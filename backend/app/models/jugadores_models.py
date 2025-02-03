@@ -104,4 +104,28 @@ class Jugador:
 
         return True  # Retorna True si la eliminación fue exitosa
    
-    
+    @classmethod
+    def actualiza_contrasena(cls, jugador):
+        query = """UPDATE jugadores as u SET u.contrasena = %s WHERE u.id_jugador = %s"""
+        params = (jugador.contrasena, jugador.id_jugador)  
+        cursor = DatabaseConnection.execute_query(query, params)
+        print(cursor)
+        
+        if cursor.rowcount == 1:
+            query = """SELECT id_jugador, nombre, apellido, edad, apodo, nivel_habilidad, contrasena, usuario, correo
+                FROM jugadores
+                where id_jugador = %s"""
+            params = jugador.id_jugador,
+            result = DatabaseConnection.fetch_one(query, params=params)
+            if result is not None:
+                jugador_result = Jugador(
+                        id_jugador = result[0],
+                        nombre = result[1],
+                        apellido = result[2],
+                        edad = result[3],
+                        apodo= result[4],
+                        nivel_habilidad= result[5],
+                        contrasen=  result[6],
+                        usuario= result[7],
+                        correo= result [8]
+                )
