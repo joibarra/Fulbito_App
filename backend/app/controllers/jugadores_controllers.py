@@ -55,4 +55,11 @@ class JugadorController:
         else:
             return jsonify({"error": "Usuario no encontrado"}), 404
         
-    
+    @classmethod
+    def actualizacion_contrasena(cls, data):
+        jugador = Jugador(
+            id_jugador=data.get('id_jugador'),
+            contrasena==data.get('contrasena')
+        )
+        return Users.pass_update(user) 
+        

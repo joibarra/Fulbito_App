@@ -4,8 +4,8 @@ from flask import request
 
 class Jugador:
     
-    def __init__(self, id=None, nombre=None, apellido=None, edad=None, apodo=None, nivel_habilidad=None, contrasena=None, usuario=None, correo=None):
-        self.id = id
+    def __init__(self, id_jugador=None, nombre=None, apellido=None, edad=None, apodo=None, nivel_habilidad=None, contrasena=None, usuario=None, correo=None):
+        self.id_jugador = id_jugador
         self.nombre = nombre
         self.apellido = apellido
         self.edad = edad
@@ -17,7 +17,7 @@ class Jugador:
         
     def to_dict(self):
         return {
-            'id': self.id,
+            'id_jugador': self.id_jugador,
             'nombre': self.nombre,
             'apellido': self.apellido,
             'edad': self.edad,
@@ -39,8 +39,8 @@ class Jugador:
             for result in results:
                 print(result)
             if results:
-                user_data = {
-                    'id': result[0],
+                jugador_data = {
+                    'id_jugador': result[0],
                     'nombre': result[1],
                     'apellido': result[2],
                     'edad': result[3],
@@ -50,18 +50,18 @@ class Jugador:
                     'usuario': result [7],
                     'correo': result[8]
                 }
-                user = Jugador(**user_data)
+                jugador = Jugador(**jugador_data)
         except Exception as e:
             print("Error en la autenticación:", str(e))    
         finally:
             if cursor:
                 cursor.close()  
-        return user 
+        return jugador 
        
     @classmethod
     def get_jugadores(cls):
         """Obtiene todos los jugadores."""
-        query = "SELECT id, nombre, apellido, edad, apodo, nivel_habilidad, contrasena, usuario, correo FROM Jugadores"
+        query = "SELECT id_jugador, nombre, apellido, edad, apodo, nivel_habilidad, contrasena, usuario, correo FROM Jugadores"
         results = DatabaseConnection.fetch_all(query)
 
         jugadores = []
@@ -98,8 +98,10 @@ class Jugador:
     @classmethod
     def eliminar_jugador(cls, id_jugador):
         """Elimina un jugador por su ID."""
-        query = "DELETE FROM Jugadores WHERE id = %s"
+        query = "DELETE FROM Jugadores WHERE id_jugador = %s"
         params = (id_jugador,)
         cursor = DatabaseConnection.execute_query(query, params)
 
         return True  # Retorna True si la eliminación fue exitosa
+   
+    
