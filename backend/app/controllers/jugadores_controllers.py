@@ -6,7 +6,6 @@ class JugadorController:
     def crear_jugador(cls, data):
         # Crea instancia de Jugador con los datos proporcionados
         jugador = Jugador(
-            usuario=data.get('usuario'),
             nombre=data.get('nombre'), 
             edad=data.get('edad'),
             apodo=data.get('apodo'),
@@ -28,7 +27,6 @@ class JugadorController:
     def modificar_jugador(cls,data):
         jugador = Jugador (
             id=data.get('id'),
-            usuario=data.get('usuario'),
             nombre=data.get('nombre'),  
             apellido=data.get('apellido'),
             edad=data.get('edad'),

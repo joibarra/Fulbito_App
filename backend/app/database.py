@@ -1,5 +1,5 @@
 import mysql.connector
-from dotenv import import dotenv_values
+from dotenv import dotenv_values
 
 class DatabaseConnection: 
     _connection = None

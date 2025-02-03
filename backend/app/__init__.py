@@ -28,3 +28,8 @@ def init_app():
             return JugadorController.login_jugador(request.json)
         elif request.method =='PUT':
             return JugadorController.contrasena_update
+        
+    if __name__ == '__main__':
+        app.run()
+
+    return app
