@@ -6,8 +6,8 @@ app.use(cors());
 app.use(express.json());
 
 // Rutas
-const playersRoutes = require('./routes/players');
-const teamsRoutes = require('./routes/teams');
+const playersRoutes = require('./FulbitoApp/routes/players');
+const teamsRoutes = require('./FulbitoApp/routes/teams');
 
 app.use('/players', playersRoutes);
 app.use('/teams', teamsRoutes);
